@@ -19,7 +19,7 @@ data:
       car: 
       drone: 
       dog:   
-      human: ./input_data/lamar-v2-NO-GRAVITY-split/human/
+      human: ./data/new_lamar_split/human/
 
   # Data processing settings
   use_local_coord: True
@@ -71,12 +71,12 @@ model:
 # TRAINING CONFIGURATION - Optimized for True Multi-GPU Speedup
 # ============================================================================
 train:
-  out_dir: ./split-lamar-gravity-OFF-dataloader-ON/
+  out_dir: ./data/outputs/lamar_ios/
   use_pretrain_model: False
   use_multi_gpu: False              # Multi-GPU training for speed (8 GPUs)
   use_amp: True                    # Automatic Mixed Precision for speed
   batch_size: 128                  # Total batch size for 8-GPU (64 per GPU)
-  epochs: 50                      # Moderate epochs for single motion type (DEBUG)
+  epochs: 5                       # Quick iteration (5 epochs ~10 min)
   start_cov_epochs: 200            # Enable covariance training
   n_workers: 24                     # Increased workers for better data loading
   seq_len: 10
@@ -107,13 +107,13 @@ val:
 # TESTING CONFIGURATION
 # ============================================================================
 test:
-  out_dir: ./split-lamar-gravity-OFF-dataloader-ON/
+  out_dir: ./data/outputs/lamar_ios/
   n_workers: 2
 
 # ============================================================================
 # TRAINING SCHEMES - Single Motion Type Training
 # ============================================================================
 schemes:
-  train: False                          # Enable training with corrected gravity augmentation
-  test:  True                           # Disable testing during training
+  train: True
+  test:  False
   online_adaption: False              # Disable online adaptation
