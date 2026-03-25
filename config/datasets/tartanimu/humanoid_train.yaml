@@ -1,0 +1,113 @@
+
+
+port: 11570
+seeds:
+  use_seeds: True
+  id: 42
+
+# ============================================================================
+# DATA CONFIGURATION - P192 Pen Only Setup
+# ============================================================================
+data:
+  dataset: AirLab
+  data_path:
+      car: 
+      drone:
+      dog:   
+      human: /dataset/humanoid_dataset/human       
+  # Data processing settings
+  use_local_coord: True
+  train_dir: train
+  test_dir: test
+  validation_dir: val
+
+  # Data split ratios (optimized for single motion type)
+  random_partition: False
+  data_rate: 1.0
+  train_rate: 0.7      # 70% training
+  test_rate: 0.15      # 15% testing
+  valid_rate: 0.15     # 15% validation
+
+  # IMU settings
+  imu_freq: 200.0      # IMU frequency in Hz
+  sample_freq: 40      # Sampling frequency
+
+  # Gravity alignment settings
+  gravity_alignment:
+    enabled: False
+    magnitude: 9.8105  # Gravity magnitude in m/s²
+    direction: [0, 0, -1]  # Gravity direction in world frame
+    enable_validation: False
+    visualize: False  # Set to True for debugging
+
+# ============================================================================
+# DATA AUGMENTATION - Enhanced with Time-Scaling Invariance
+# ============================================================================
+augment:
+  feat_acc_sigma: 0.0001
+  feat_gyr_sigma: 0.00001
+  add_bias_noise: True
+  accel_bias_range: 0.1
+  gyro_bias_range: 0.002
+  add_gravity_noise: True
+  gravity_noise_theta_range: 5  # degrees
+
+# ============================================================================
+# MODEL CONFIGURATION - Foundation Model (will work with single motion type)
+# ============================================================================
+model:
+  model_name: Foundation_Model
+  model_yaml: './config/resnet_lstm_multihead.yaml'
+  pred_velocity: True
+  adapter: False
+
+# ============================================================================
+# TRAINING CONFIGURATION - Optimized for True Multi-GPU Speedup
+# ============================================================================
+train:
+  out_dir: /exp_result/human_pretrain_addhuman_helmet
+  use_pretrain_model: True
+  use_multi_gpu: True              # Multi-GPU training for speed (8 GPUs)
+  use_amp: True                    # Automatic Mixed Precision for speed
+  batch_size: 512                  # Total batch size for 8-GPU (64 per GPU)
+  epochs: 250                      # Moderate epochs for single motion type
+  start_cov_epochs: 200            # Enable covariance training
+  n_workers: 4                     # Increased workers for better data loading
+  seq_len: 10
+  predict_start: 0                 # unused
+  predict_end: 10                  # unused
+  add_noise: True                  # unused
+  active_heads: ["human"]
+
+  # Optimizer settings
+  optimizer:
+    learning_rate: 0.0001          # Reduced learning rate for better stability
+    method: Adam
+    weight_decay: 0.01
+
+  # Scheduler settings
+  scheduler:
+    factor: 0.1
+    patience: 8                    # Moderate patience
+
+# ============================================================================
+# VALIDATION CONFIGURATION
+# ============================================================================
+val:
+  batch_size: 512
+  n_workers: 4
+
+# ============================================================================
+# TESTING CONFIGURATION
+# ============================================================================
+test:
+  out_dir: /exp_result/human_pretrain_addhuman_helmet
+  n_workers: 4
+
+# ============================================================================
+# TRAINING SCHEMES - Single Motion Type Training
+# ============================================================================
+schemes:
+  train: True                           # Enable training with corrected gravity augmentation
+  test:  False                         # Disable testing during training
+  online_adaption: False              # Disable online adaptation
