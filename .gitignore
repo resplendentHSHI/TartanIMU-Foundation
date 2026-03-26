@@ -1,1 +1,18 @@
-wandb/\n__pycache__/\n*.pyc\ndata/outputs/\n.gradio/
+wandb/
+__pycache__/
+*.pyc
+.gradio/
+
+# Data files — too large for GitHub
+data/
+datasets/
+verified_data/
+raw_data/
+input_data/
+foundation_model/
+*.npz
+*.pt
+*.pth
+*.ckpt
+run.log
+results.tsv
