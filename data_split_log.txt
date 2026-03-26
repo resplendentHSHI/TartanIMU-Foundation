@@ -1,0 +1,339 @@
+           INFO     [DATA_SPLIT] random_partition summary  dataset_AirLab.py:800
+                    | data_rate=1.00 | valuation_rate=0.25                      
+                    | selected_trajectories=66 | val=13 |                       
+                    train=53 | dropped=1                                        
+           INFO     [DATA_SPLIT] val trajectories:         dataset_AirLab.py:810
+                    ['36:./verified_data/car/2/train/2469/                      
+                    3.npz(7122 samples)',                                       
+                    '16:./verified_data/car/2/train/2509/4                      
+                    .npz(80880 samples)',                                       
+                    '4:./verified_data/car/2/train/2196/1.                      
+                    npz(18320 samples)',                                        
+                    '9:./verified_data/car/2/train/248/1.n                      
+                    pz(69400 samples)',                                         
+                    '45:./verified_data/car/2/train/2328/0                      
+                    .npz(5880 samples)',                                        
+                    '40:./verified_data/car/2/train/2199/3                      
+                    .npz(15000 samples)',                                       
+                    '61:./verified_data/car/2/train/286/2.                      
+                    npz(23720 samples)',                                        
+                    '5:./verified_data/car/2/train/2823/2.                      
+                    npz(33600 samples)',                                        
+                    '64:./verified_data/car/2/train/272/6.                      
+                    npz(5320 samples)',                                         
+                    '12:./verified_data/car/2/train/2278/3                      
+                    .npz(28480 samples)',                                       
+                    '25:./verified_data/car/2/train/2494/4                      
+                    .npz(80880 samples)',                                       
+                    '59:./verified_data/car/2/train/228/5.                      
+                    npz(3840 samples)',                                         
+                    '28:./verified_data/car/2/train/2222/2                      
+                    .npz(31000 samples)']                                       
+           INFO     [DATA_SPLIT] train trajectories:       dataset_AirLab.py:814
+                    ['0:./verified_data/car/2/train/2580/1                      
+                    .npz(17440 samples)',                                       
+                    '62:./verified_data/car/2/train/2524/6                      
+                    .npz(83920 samples)',                                       
+                    '34:./verified_data/car/2/train/2985/3                      
+                    .npz(18480 samples)',                                       
+                    '48:./verified_data/car/2/train/235/8.                      
+                    npz(43240 samples)',                                        
+                    '7:./verified_data/car/2/train/2242/1.                      
+                    npz(13760 samples)',                                        
+                    '41:./verified_data/car/2/train/2199/1                      
+                    .npz(17240 samples)',                                       
+                    '30:./verified_data/car/2/train/25/2.n                      
+                    pz(8560 samples)',                                          
+                    '54:./verified_data/car/2/train/2181/1                      
+                    .npz(18240 samples)',                                       
+                    '19:./verified_data/car/2/train/2200/1                      
+                    .npz(11000 samples)',                                       
+                    '44:./verified_data/car/2/train/216/8.                      
+                    npz(6120 samples)',                                         
+                    '42:./verified_data/car/2/train/2967/1                      
+                    3.npz(7800 samples)',                                       
+                    '31:./verified_data/car/2/train/2690/5                      
+                    .npz(6840 samples)',                                        
+                    '46:./verified_data/car/2/train/2582/0                      
+                    .npz(10720 samples)',                                       
+                    '13:./verified_data/car/2/train/2567/1                      
+                    .npz(60000 samples)',                                       
+                    '53:./verified_data/car/2/train/2327/0                      
+                    .npz(6280 samples)',                                        
+                    '3:./verified_data/car/2/train/2514/6.                      
+                    npz(83920 samples)',                                        
+                    '17:./verified_data/car/2/train/2217/3                      
+                    .npz(14400 samples)',                                       
+                    '33:./verified_data/car/2/train/245/7.                      
+                    npz(31720 samples)',                                        
+                    '8:./verified_data/car/2/train/2298/3.                      
+                    npz(23480 samples)',                                        
+                    '47:./verified_data/car/2/train/235/4.                      
+                    npz(4000 samples)',                                         
+                    '6:./verified_data/car/2/train/2760/0.                      
+                    npz(30800 samples)',                                        
+                    '66:./verified_data/car/2/train/2326/1                      
+                    .npz(5720 samples)',                                        
+                    '65:./verified_data/car/2/train/272/5.                      
+                    npz(6560 samples)',                                         
+                    '15:./verified_data/car/2/train/2243/1                      
+                    .npz(13760 samples)',                                       
+                    '27:./verified_data/car/2/train/2277/4                      
+                    .npz(27440 samples)',                                       
+                    '26:./verified_data/car/2/train/2451/2                      
+                    .npz(57520 samples)',                                       
+                    '24:./verified_data/car/2/train/2516/4                      
+                    .npz(12480 samples)',                                       
+                    '50:./verified_data/car/2/train/2583/3                      
+                    .npz(10320 samples)',                                       
+                    '11:./verified_data/car/2/train/2530/4                      
+                    .npz(12480 samples)',                                       
+                    '32:./verified_data/car/2/train/2250/3                      
+                    .npz(37000 samples)',                                       
+                    '63:./verified_data/car/2/train/2247/3                      
+                    .npz(14960 samples)',                                       
+                    '49:./verified_data/car/2/train/235/7.                      
+                    npz(8400 samples)',                                         
+                    '37:./verified_data/car/2/train/2577/2                      
+                    .npz(26560 samples)',                                       
+                    '29:./verified_data/car/2/train/25/1.n                      
+                    pz(9120 samples)',                                          
+                    '43:./verified_data/car/2/train/2527/6                      
+                    .npz(13440 samples)',                                       
+                    '55:./verified_data/car/2/train/2241/1                      
+                    .npz(13088 samples)',                                       
+                    '1:./verified_data/car/2/train/295/3.n                      
+                    pz(8880 samples)',                                          
+                    '21:./verified_data/car/2/train/2325/0                      
+                    .npz(7400 samples)',                                        
+                    '2:./verified_data/car/2/train/295/0.n                      
+                    pz(7960 samples)',                                          
+                    '56:./verified_data/car/2/train/2183/1                      
+                    .npz(16160 samples)',                                       
+                    '39:./verified_data/car/2/train/2246/5                      
+                    .npz(26720 samples)',                                       
+                    '35:./verified_data/car/2/train/2184/1                      
+                    .npz(9640 samples)',                                        
+                    '52:./verified_data/car/2/train/2583/2                      
+                    .npz(21230 samples)',                                       
+                    '23:./verified_data/car/2/train/2515/6                      
+                    .npz(13440 samples)',                                       
+                    '58:./verified_data/car/2/train/28/1.n                      
+                    pz(3240 samples)',                                          
+                    '10:./verified_data/car/2/train/2201/1                      
+                    .npz(18200 samples)',                                       
+                    '22:./verified_data/car/2/train/2325/7                      
+                    .npz(9092 samples)',                                        
+                    '18:./verified_data/car/2/train/232/10                      
+                    .npz(21560 samples)',                                       
+                    '57:./verified_data/car/2/train/28/0.n                      
+                    pz(4960 samples)',                                          
+                    '38:./verified_data/car/2/train/2493/2                      
+                    .npz(17200 samples)',                                       
+                    '20:./verified_data/car/2/train/2506/2                      
+                    .npz(17200 samples)',                                       
+                    '60:./verified_data/car/2/train/2279/3                      
+                    .npz(34240 samples)',                                       
+                    '14:./verified_data/car/2/train/2762/0                      
+                    .npz(75000 samples)']                                       
+           INFO     [DATA_SPLIT] dropped trajectories      dataset_AirLab.py:819
+                    (excluded by data_rate):                                    
+                    ['51:./verified_data/car/2/train/2583/                      
+                    1.npz(15160 samples)']                                      
+           INFO     process test data                            main_net.py:467
+ℹ data_list: ['./verified_data/car/2/test/798/3.npz', 
+'./verified_data/car/2/test/798/2.npz', './verified_data/car/2/test/761/1.npz', 
+'./verified_data/car/2/test/25/1.npz', './verified_data/car/2/test/25/2.npz', 
+'./verified_data/car/2/test/70/0.npz', './verified_data/car/2/test/758/0.npz', 
+'./verified_data/car/2/test/792/1.npz', './verified_data/car/2/test/792/2.npz']
+ℹ data_list: ['./verified_data/car/2/test/798/3.npz', 
+'./verified_data/car/2/test/798/2.npz', './verified_data/car/2/test/761/1.npz', 
+'./verified_data/car/2/test/25/1.npz', './verified_data/car/2/test/25/2.npz', 
+'./verified_data/car/2/test/70/0.npz', './verified_data/car/2/test/758/0.npz', 
+'./verified_data/car/2/test/792/1.npz', './verified_data/car/2/test/792/2.npz']
+ℹ data_list: ['./verified_data/car/2/test/798/3.npz', 
+'./verified_data/car/2/test/798/2.npz', './verified_data/car/2/test/761/1.npz', 
+'./verified_data/car/2/test/25/1.npz', './verified_data/car/2/test/25/2.npz', 
+'./verified_data/car/2/test/70/0.npz', './verified_data/car/2/test/758/0.npz', 
+'./verified_data/car/2/test/792/1.npz', './verified_data/car/2/test/792/2.npz']
+ℹ data_list: ['./verified_data/car/2/test/798/3.npz', 
+'./verified_data/car/2/test/798/2.npz', './verified_data/car/2/test/761/1.npz', 
+'./verified_data/car/2/test/25/1.npz', './verified_data/car/2/test/25/2.npz', 
+'./verified_data/car/2/test/70/0.npz', './verified_data/car/2/test/758/0.npz', 
+'./verified_data/car/2/test/792/1.npz', './verified_data/car/2/test/792/2.npz']
+           WARNING  test_data_path_list:                         main_net.py:470
+                    ['./verified_data/car/2/test/798/3.npz',                    
+                    './verified_data/car/2/test/798/2.npz',                     
+                    './verified_data/car/2/test/761/1.npz',                     
+                    './verified_data/car/2/test/25/1.npz',                      
+                    './verified_data/car/2/test/25/2.npz',                      
+                    './verified_data/car/2/test/70/0.npz',                      
+                    './verified_data/car/2/test/758/0.npz',                     
+                    './verified_data/car/2/test/792/1.npz',                     
+                    './verified_data/car/2/test/792/2.npz']                     
+           INFO     [DATA_LOAD] Starting load of 9 files   dataset_AirLab.py:350
+                    (mode=test)                                                 
+           INFO     [DATA_LOAD] Loading file 1/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/798/3.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/798/3.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (102600,), imu:      dataset_AirLab.py:143
+                    (102600, 6), pos: (102600, 3), quat:                        
+                    (102600, 4)                                                 
+           INFO     ./verified_data/car/2/test/798/3.npz:  dataset_AirLab.py:231
+                    sum time: 512.9950000000001, gt: False                      
+           INFO     [DATA_LOAD] Loading file 2/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/798/2.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/798/2.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (34200,), imu:       dataset_AirLab.py:143
+                    (34200, 6), pos: (34200, 3), quat:                          
+                    (34200, 4)                                                  
+           INFO     ./verified_data/car/2/test/798/2.npz:  dataset_AirLab.py:231
+                    sum time: 170.995, gt: False                                
+[20:25:13] INFO     [DATA_LOAD] Loading file 3/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/761/1.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/761/1.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (161800,), imu:      dataset_AirLab.py:143
+                    (161800, 6), pos: (161800, 3), quat:                        
+                    (161800, 4)                                                 
+           INFO     ./verified_data/car/2/test/761/1.npz:  dataset_AirLab.py:231
+                    sum time: 808.9949999999999, gt: False                      
+[20:25:14] INFO     [DATA_LOAD] Loading file 4/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/25/1.npz                         
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/25/1.npz                         
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (47600,), imu:       dataset_AirLab.py:143
+                    (47600, 6), pos: (47600, 3), quat:                          
+                    (47600, 4)                                                  
+           INFO     ./verified_data/car/2/test/25/1.npz:   dataset_AirLab.py:231
+                    sum time: 237.995, gt: False                                
+           INFO     [DATA_LOAD] Loading file 5/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/25/2.npz                         
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/25/2.npz                         
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (44800,), imu:       dataset_AirLab.py:143
+                    (44800, 6), pos: (44800, 3), quat:                          
+                    (44800, 4)                                                  
+           INFO     ./verified_data/car/2/test/25/2.npz:   dataset_AirLab.py:231
+                    sum time: 223.99500000000012, gt:                           
+                    False                                                       
+           INFO     [DATA_LOAD] Loading file 6/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/70/0.npz                         
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/70/0.npz                         
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (54800,), imu:       dataset_AirLab.py:143
+                    (54800, 6), pos: (54800, 3), quat:                          
+                    (54800, 4)                                                  
+           INFO     ./verified_data/car/2/test/70/0.npz:   dataset_AirLab.py:231
+                    sum time: 273.995, gt: False                                
+[20:25:15] INFO     [DATA_LOAD] Loading file 7/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/758/0.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/758/0.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (193600,), imu:      dataset_AirLab.py:143
+                    (193600, 6), pos: (193600, 3), quat:                        
+                    (193600, 4)                                                 
+           INFO     ./verified_data/car/2/test/758/0.npz:  dataset_AirLab.py:231
+                    sum time: 967.9950000000001, gt: False                      
+[20:25:16] INFO     [DATA_LOAD] Loading file 8/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/792/1.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/792/1.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (31200,), imu:       dataset_AirLab.py:143
+                    (31200, 6), pos: (31200, 3), quat:                          
+                    (31200, 4)                                                  
+           INFO     ./verified_data/car/2/test/792/1.npz:  dataset_AirLab.py:231
+                    sum time: 155.99500000000012, gt:                           
+                    False                                                       
+           INFO     [DATA_LOAD] Loading file 9/9:          dataset_AirLab.py:354
+                    ./verified_data/car/2/test/792/2.npz                        
+           INFO     Successfully loaded                    dataset_AirLab.py:117
+                    ./verified_data/car/2/test/792/2.npz                        
+                    with keys:                                                  
+                    ['group_classification_result',                             
+                    'instance_classification_result',                           
+                    'retargetted_ts', 'retargetted_imu',                        
+                    'retargetted_pos', 'retargetted_quat',                      
+                    'time_span']                                                
+           INFO     Data shapes - ts: (170200,), imu:      dataset_AirLab.py:143
+                    (170200, 6), pos: (170200, 3), quat:                        
+                    (170200, 4)                                                 
+           INFO     ./verified_data/car/2/test/792/2.npz:  dataset_AirLab.py:231
+                    sum time: 850.9949999999999, gt: False                      
+[20:25:17] ERROR    Test configuration missing 'batch_size'.     main_net.py:483
+                    Using train batch_size as fallback.                         
+           🆕 Fresh Training Information            
+╭─────────────────┬───────────────────────┬────────╮
+│ Property        │ Value                 │ Status │
+├─────────────────┼───────────────────────┼────────┤
+│ Training Mode   │ Fresh Training        │ 🆕     │
+│ Starting Epoch  │ 0                     │ ✅     │
+│ Model State     │ Random Initialization │ ✅     │
+│ Optimizer State │ Fresh Optimizer       │ ✅     │
+│ GPU Mode        │ Single-GPU            │ ✅     │
+╰─────────────────┴───────────────────────┴────────╯
+           INFO     Trainer initialization - Output directory:      train.py:245
+                    ./foundation_output/                                        
+           INFO     Trainer initialization - Local rank: 0          train.py:246
+           INFO     Trainer initialization - Use multi-GPU: False   train.py:247
+           INFO     Output directory is valid: ./foundation_output/ train.py:260
+           WARNING  Using standard ReduceLROnPlateau scheduler      train.py:296
+/home/hshi-j-4090/Desktop/TartanIMU-Foundation/train.py:266: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.scaler = torch.cuda.amp.GradScaler(enabled=self.use_amp)
+           INFO     Trainer initialized on device: cuda:0           train.py:276
+           INFO     Starting standard training                   main_net.py:832
+           INFO     Initialized tracking variables for fresh        train.py:429
+                    training                                                    
+╔══════════════════════════════════════════════════════════════════════════════╗
+║ 🚀 Training Epoch 1/20 (5.0%)                                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
