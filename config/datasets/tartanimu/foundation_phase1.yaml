@@ -1,0 +1,86 @@
+port: 11570
+seeds:
+  use_seeds: True
+  id: 42
+
+# Phase 1: Train on verified data only, all 4 motion types
+data:
+  dataset: AirLab
+  data_path:
+      car:   ./verified_data/car/2
+      drone: ./verified_data/drone/drone_dataset_uzh_euroc_subt
+      dog:   ./verified_data/dog/1+eth
+      human: ./verified_data/human/1
+
+  use_local_coord: True
+  train_dir: train
+  test_dir: test
+  validation_dir: val
+
+  # 75/25 split via random partition
+  random_partition: True
+  data_rate: 1.0
+  train_rate: 0.75
+  valid_rate: 0.25
+
+  imu_freq: 200.0
+  sample_freq: 40
+
+  gravity_alignment:
+    enabled: False
+    magnitude: 9.8101
+    direction: [0, 0, -1]
+    enable_validation: False
+    visualize: False
+
+augment:
+  feat_acc_sigma: 0.0001
+  feat_gyr_sigma: 0.00001
+  add_bias_noise: True
+  accel_bias_range: 0.1
+  gyro_bias_range: 0.002
+  add_gravity_noise: True
+  gravity_noise_theta_range: 5
+
+model:
+  model_name: Foundation_Model
+  model_yaml: 'config/resnet_lstm_multihead.yaml'
+  pred_velocity: True
+  adapter: False
+
+train:
+  out_dir: ./foundation_output/
+  use_pretrain_model: False
+  use_multi_gpu: False
+  use_amp: True
+  batch_size: 128
+  epochs: 20
+  start_cov_epochs: 999
+  n_workers: 16
+  seq_len: 10
+  predict_start: 0
+  predict_end: 10
+  add_noise: True
+  active_heads: ["car", "dog", "drone", "human"]
+
+  optimizer:
+    learning_rate: 0.0001
+    method: Adam
+    weight_decay: 0.01
+
+  scheduler:
+    factor: 0.1
+    patience: 8
+
+val:
+  batch_size: 256
+  n_workers: 4
+
+test:
+  out_dir: ./foundation_output/
+  n_workers: 2
+
+schemes:
+  train: True
+  test: False
+  online_adaption: False

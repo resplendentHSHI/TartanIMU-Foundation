@@ -4,12 +4,13 @@ __pycache__/
 .gradio/
 
 # Data files — too large for GitHub
-data/
-datasets/
-verified_data/
-raw_data/
-input_data/
-foundation_model/
+/data/
+/datasets/
+/verified_data/
+/raw_data/
+/input_data/
+/foundation_model/
+/foundation_output/
 *.npz
 *.pt
 *.pth
