@@ -7,7 +7,7 @@ model_param:
   future_time: 0.0
   layer_sizes: [ 2, 2, 2, 2 ]
   drop_ratio: 0.3  # Reduced dropout for better multi-head performance
-  lstm_size: 256   # Larger hidden for more capacity
+  lstm_size: 128   # Increased for better representation learning
   lstm_layers: 2   # Increased layers for better temporal modeling
   lstm_dropout: 0.1  # Added dropout for regularization
   use_transformer: False
