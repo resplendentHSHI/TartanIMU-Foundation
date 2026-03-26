@@ -50,7 +50,7 @@ model:
 
 train:
   out_dir: ./foundation_output/
-  use_pretrain_model: False
+  use_pretrain_model: True
   use_multi_gpu: False
   use_amp: True
   batch_size: 128
