@@ -680,7 +680,7 @@ def main(rank: int, world_size: int, args, resume_path, model_path, cfg):
             raise
         # Only initialize wandb on the main process (rank 0) to avoid multiple experiments
         if args.log and rank == 0:
-            exp_name = os.path.split(args.yaml)[-1].split(".")[0]  # +"_"+args.exp_name
+            exp_name = os.environ.get("WANDB_RUN_NAME", os.path.split(args.yaml)[-1].split(".")[0])
             wandb.init(
                 project="Neural_Inertial_Tracking_" + cfg["data"]["dataset"],
                 config=cfg["train"],
