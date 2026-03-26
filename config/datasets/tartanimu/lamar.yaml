@@ -75,7 +75,7 @@ train:
   use_pretrain_model: False
   use_multi_gpu: False              # Multi-GPU training for speed (8 GPUs)
   use_amp: True                    # Automatic Mixed Precision for speed
-  batch_size: 128                  # Total batch size for 8-GPU (64 per GPU)
+  batch_size: 256                  # Larger batch for better gradient estimates
   epochs: 5                       # Quick iteration (5 epochs ~10 min)
   start_cov_epochs: 200            # Enable covariance training
   n_workers: 24                     # Increased workers for better data loading
