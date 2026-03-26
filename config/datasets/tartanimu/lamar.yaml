@@ -76,7 +76,7 @@ train:
   use_multi_gpu: False              # Multi-GPU training for speed (8 GPUs)
   use_amp: True                    # Automatic Mixed Precision for speed
   batch_size: 256                  # Best speed/quality tradeoff
-  epochs: 10                      # 10 epochs to test convergence
+  epochs: 15                      # 15 epochs to test <0.9 train loss target
   start_cov_epochs: 200            # Enable covariance training
   n_workers: 24                     # Increased workers for better data loading
   seq_len: 10
