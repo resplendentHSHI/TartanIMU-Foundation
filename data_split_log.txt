@@ -140,7 +140,7 @@
                     (excluded by data_rate):                                    
                     ['51:./verified_data/car/2/train/2583/                      
                     1.npz(15160 samples)']                                      
-           INFO     process test data                            main_net.py:467
+[21:50:30] INFO     process test data                            main_net.py:467
 ℹ data_list: ['./verified_data/car/2/test/798/3.npz', 
 './verified_data/car/2/test/798/2.npz', './verified_data/car/2/test/761/1.npz', 
 './verified_data/car/2/test/25/1.npz', './verified_data/car/2/test/25/2.npz', 
@@ -203,7 +203,7 @@
                     (34200, 4)                                                  
            INFO     ./verified_data/car/2/test/798/2.npz:  dataset_AirLab.py:231
                     sum time: 170.995, gt: False                                
-[20:25:13] INFO     [DATA_LOAD] Loading file 3/9:          dataset_AirLab.py:354
+           INFO     [DATA_LOAD] Loading file 3/9:          dataset_AirLab.py:354
                     ./verified_data/car/2/test/761/1.npz                        
            INFO     Successfully loaded                    dataset_AirLab.py:117
                     ./verified_data/car/2/test/761/1.npz                        
@@ -216,9 +216,9 @@
            INFO     Data shapes - ts: (161800,), imu:      dataset_AirLab.py:143
                     (161800, 6), pos: (161800, 3), quat:                        
                     (161800, 4)                                                 
-           INFO     ./verified_data/car/2/test/761/1.npz:  dataset_AirLab.py:231
+[21:50:31] INFO     ./verified_data/car/2/test/761/1.npz:  dataset_AirLab.py:231
                     sum time: 808.9949999999999, gt: False                      
-[20:25:14] INFO     [DATA_LOAD] Loading file 4/9:          dataset_AirLab.py:354
+           INFO     [DATA_LOAD] Loading file 4/9:          dataset_AirLab.py:354
                     ./verified_data/car/2/test/25/1.npz                         
            INFO     Successfully loaded                    dataset_AirLab.py:117
                     ./verified_data/car/2/test/25/1.npz                         
@@ -231,7 +231,7 @@
            INFO     Data shapes - ts: (47600,), imu:       dataset_AirLab.py:143
                     (47600, 6), pos: (47600, 3), quat:                          
                     (47600, 4)                                                  
-           INFO     ./verified_data/car/2/test/25/1.npz:   dataset_AirLab.py:231
+[21:50:32] INFO     ./verified_data/car/2/test/25/1.npz:   dataset_AirLab.py:231
                     sum time: 237.995, gt: False                                
            INFO     [DATA_LOAD] Loading file 5/9:          dataset_AirLab.py:354
                     ./verified_data/car/2/test/25/2.npz                         
@@ -264,7 +264,7 @@
                     (54800, 4)                                                  
            INFO     ./verified_data/car/2/test/70/0.npz:   dataset_AirLab.py:231
                     sum time: 273.995, gt: False                                
-[20:25:15] INFO     [DATA_LOAD] Loading file 7/9:          dataset_AirLab.py:354
+           INFO     [DATA_LOAD] Loading file 7/9:          dataset_AirLab.py:354
                     ./verified_data/car/2/test/758/0.npz                        
            INFO     Successfully loaded                    dataset_AirLab.py:117
                     ./verified_data/car/2/test/758/0.npz                        
@@ -277,9 +277,9 @@
            INFO     Data shapes - ts: (193600,), imu:      dataset_AirLab.py:143
                     (193600, 6), pos: (193600, 3), quat:                        
                     (193600, 4)                                                 
-           INFO     ./verified_data/car/2/test/758/0.npz:  dataset_AirLab.py:231
+[21:50:33] INFO     ./verified_data/car/2/test/758/0.npz:  dataset_AirLab.py:231
                     sum time: 967.9950000000001, gt: False                      
-[20:25:16] INFO     [DATA_LOAD] Loading file 8/9:          dataset_AirLab.py:354
+[21:50:34] INFO     [DATA_LOAD] Loading file 8/9:          dataset_AirLab.py:354
                     ./verified_data/car/2/test/792/1.npz                        
            INFO     Successfully loaded                    dataset_AirLab.py:117
                     ./verified_data/car/2/test/792/1.npz                        
@@ -310,18 +310,25 @@
                     (170200, 4)                                                 
            INFO     ./verified_data/car/2/test/792/2.npz:  dataset_AirLab.py:231
                     sum time: 850.9949999999999, gt: False                      
-[20:25:17] ERROR    Test configuration missing 'batch_size'.     main_net.py:483
+[21:50:35] ERROR    Test configuration missing 'batch_size'.     main_net.py:483
                     Using train batch_size as fallback.                         
-           🆕 Fresh Training Information            
-╭─────────────────┬───────────────────────┬────────╮
-│ Property        │ Value                 │ Status │
-├─────────────────┼───────────────────────┼────────┤
-│ Training Mode   │ Fresh Training        │ 🆕     │
-│ Starting Epoch  │ 0                     │ ✅     │
-│ Model State     │ Random Initialization │ ✅     │
-│ Optimizer State │ Fresh Optimizer       │ ✅     │
-│ GPU Mode        │ Single-GPU            │ ✅     │
-╰─────────────────┴───────────────────────┴────────╯
+================================================
+    🚨 LOADING MODEL FOR FINETUNING 🚨    
+================================================
+✅ SUCCESS: ✅ LOADING MODEL FROM SPECIFIED PATH: 
+./foundation_output/checkpoints/checkpoint_epoch_6.pt ✅
+                          📊 Model Loading Information                          
+╭─────────────────┬───────────────────────────────────────────────────┬────────╮
+│ Property        │ Value                                             │ Status │
+├─────────────────┼───────────────────────────────────────────────────┼────────┤
+│ Starting Epoch  │ 6                                                 │ ✅     │
+│ Model Epoch     │ 6                                                 │ ✅     │
+│ Checkpoint Path │ ./foundation_output/checkpoints/checkpoint_epoch… │ ✅     │
+│ GPU Mode        │ Single-GPU                                        │ ✅     │
+│ Model Weights   │ Loaded (Single-GPU)                               │ ✅     │
+│ Optimizer State │ Loaded from checkpoint                            │ ✅     │
+╰─────────────────┴───────────────────────────────────────────────────┴────────╯
+✅ SUCCESS: 🎯 READY TO CONTINUE TRAINING FROM EPOCH 6 ✅
            INFO     Trainer initialization - Output directory:      train.py:245
                     ./foundation_output/                                        
            INFO     Trainer initialization - Local rank: 0          train.py:246
@@ -330,10 +337,3 @@
            WARNING  Using standard ReduceLROnPlateau scheduler      train.py:296
 /home/hshi-j-4090/Desktop/TartanIMU-Foundation/train.py:266: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
   self.scaler = torch.cuda.amp.GradScaler(enabled=self.use_amp)
-           INFO     Trainer initialized on device: cuda:0           train.py:276
-           INFO     Starting standard training                   main_net.py:832
-           INFO     Initialized tracking variables for fresh        train.py:429
-                    training                                                    
-╔══════════════════════════════════════════════════════════════════════════════╗
-║ 🚀 Training Epoch 1/20 (5.0%)                                                ║
-╚══════════════════════════════════════════════════════════════════════════════╝
