@@ -14,7 +14,7 @@ Each npz contains:
 Key fixes over alignment_original.py:
   - iOS accelerometer reports in g's -> multiply by 9.81 for m/s^2
   - iOS gyroscope reports in rad/s (no conversion needed)
-  - Timestamps are in nanoseconds
+  - Timestamps are in microseconds
   - trajectories.txt quaternions are wxyz -> reorder to xyzw for npz
   - No gravity rotation applied (the dataloader handles gravity compensation)
   - SLERP interpolation for quaternions instead of linear
@@ -119,36 +119,36 @@ def process_session(session_dir, output_path):
         print(f"  SKIP {session_name}: no temporal overlap")
         return False
 
-    duration = (overlap_end - overlap_start) / 1e9  # convert ns to seconds
+    duration = (overlap_end - overlap_start) / 1e6  # convert us to seconds
     if duration < 10.0:
         print(f"  SKIP {session_name}: overlap too short ({duration:.1f}s)")
         return False
 
     # Create uniform 200Hz timestamps in the overlap region
     n_samples = int(duration * TARGET_RATE)
-    common_ts_ns = np.linspace(overlap_start, overlap_end, n_samples)
-    common_ts_s = (common_ts_ns - common_ts_ns[0]) / 1e9  # seconds from 0
+    common_ts_us = np.linspace(overlap_start, overlap_end, n_samples)
+    common_ts_s = (common_ts_us - common_ts_us[0]) / 1e6  # seconds from 0
 
     # Interpolate accelerometer (linear)
     accel_interp = np.zeros((n_samples, 3))
     for i in range(3):
         f = interp1d(accel_ts, accel_data_ms2[:, i], kind='linear',
                       bounds_error=False, fill_value='extrapolate')
-        accel_interp[:, i] = f(common_ts_ns)
+        accel_interp[:, i] = f(common_ts_us)
 
     # Interpolate gyroscope (linear)
     gyro_interp = np.zeros((n_samples, 3))
     for i in range(3):
         f = interp1d(gyro_ts, gyro_data[:, i], kind='linear',
                       bounds_error=False, fill_value='extrapolate')
-        gyro_interp[:, i] = f(common_ts_ns)
+        gyro_interp[:, i] = f(common_ts_us)
 
     # Interpolate position (linear)
     pos_interp = np.zeros((n_samples, 3))
     for i in range(3):
         f = interp1d(traj_ts, traj_pos[:, i], kind='linear',
                       bounds_error=False, fill_value='extrapolate')
-        pos_interp[:, i] = f(common_ts_ns)
+        pos_interp[:, i] = f(common_ts_us)
 
     # Interpolate quaternions using SLERP
     # Convert wxyz -> xyzw for scipy Rotation
@@ -159,7 +159,7 @@ def process_session(session_dir, output_path):
 
     rotations = Rotation.from_quat(traj_quat_xyzw)
     slerp = Slerp(traj_ts, rotations)
-    quat_interp = slerp(common_ts_ns).as_quat()  # xyzw convention
+    quat_interp = slerp(common_ts_us).as_quat()  # xyzw convention
 
     # Combine IMU: [ax, ay, az, gx, gy, gz]
     imu = np.hstack([accel_interp, gyro_interp])
@@ -179,55 +179,64 @@ def process_session(session_dir, output_path):
 
 
 def main():
-    raw_dir = Path('raw_data/raw_ios/CAB/sessions')
+    raw_base = Path('raw_data/raw_ios')
     train_dir = Path('data/new_lamar_split/human/train')
     val_dir = Path('data/new_lamar_split/human/val')
 
-    if not raw_dir.exists():
-        print(f"ERROR: raw data dir not found: {raw_dir}")
-        sys.exit(1)
+    # Discover all buildings with session data
+    buildings = [d for d in sorted(os.listdir(raw_base))
+                 if (raw_base / d / 'sessions').is_dir()]
+    print(f"Found buildings: {buildings}")
 
-    sessions = sorted(os.listdir(raw_dir))
-    print(f"Found {len(sessions)} raw sessions")
-
-    # Identify which sessions are in train vs val by checking existing symlinks/files
-    train_sessions = set()
-    val_sessions = set()
+    # Build lookup: npz filename stem -> train or val
+    train_sessions = {}  # session_name -> building prefix
+    val_sessions = {}
     for f in os.listdir(train_dir):
-        if f.endswith('.npz') and f.startswith('CAB_'):
-            session_name = f.replace('CAB_', '').replace('.npz', '')
-            train_sessions.add(session_name)
+        if f.endswith('.npz'):
+            # e.g. CAB_ios_2021-06-02_14.21.49.npz -> building=CAB, session=ios_2021-06-02_14.21.49
+            stem = f.replace('.npz', '')
+            parts = stem.split('_', 1)
+            if len(parts) == 2:
+                train_sessions[stem] = parts[0]
     for f in os.listdir(val_dir):
-        if f.endswith('.npz') and f.startswith('CAB_'):
-            session_name = f.replace('CAB_', '').replace('.npz', '')
-            val_sessions.add(session_name)
+        if f.endswith('.npz'):
+            stem = f.replace('.npz', '')
+            parts = stem.split('_', 1)
+            if len(parts) == 2:
+                val_sessions[stem] = parts[0]
 
-    print(f"Train CAB sessions: {len(train_sessions)}")
-    print(f"Val CAB sessions: {len(val_sessions)}")
+    print(f"Train npz files: {len(train_sessions)}")
+    print(f"Val npz files: {len(val_sessions)}")
 
     success, fail = 0, 0
-    for session_name in sessions:
-        session_path = raw_dir / session_name
+    for building in buildings:
+        sessions_dir = raw_base / building / 'sessions'
+        sessions = sorted(os.listdir(sessions_dir))
+        print(f"\n{building}: {len(sessions)} sessions")
 
-        if session_name in train_sessions:
-            out_path = train_dir / f'CAB_{session_name}.npz'
-        elif session_name in val_sessions:
-            out_path = val_dir / f'CAB_{session_name}.npz'
-        else:
-            print(f"  SKIP {session_name}: not in train or val split")
-            continue
+        for session_name in sessions:
+            session_path = sessions_dir / session_name
+            npz_stem = f'{building}_{session_name}'
 
-        # Remove old symlink/file if exists
-        if out_path.is_symlink():
-            out_path.unlink()
-        elif out_path.exists():
-            out_path.unlink()
+            if npz_stem in train_sessions:
+                out_path = train_dir / f'{npz_stem}.npz'
+            elif npz_stem in val_sessions:
+                out_path = val_dir / f'{npz_stem}.npz'
+            else:
+                print(f"  SKIP {npz_stem}: not in train or val split")
+                continue
 
-        ok = process_session(session_path, out_path)
-        if ok:
-            success += 1
-        else:
-            fail += 1
+            # Remove old symlink/file if exists
+            if out_path.is_symlink():
+                out_path.unlink()
+            elif out_path.exists():
+                out_path.unlink()
+
+            ok = process_session(session_path, out_path)
+            if ok:
+                success += 1
+            else:
+                fail += 1
 
     print(f"\nDone: {success} processed, {fail} failed/skipped")
 
