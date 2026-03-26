@@ -34,13 +34,13 @@ data:
     visualize: False
 
 augment:
-  feat_acc_sigma: 0.0001
-  feat_gyr_sigma: 0.00001
+  feat_acc_sigma: 0.00005
+  feat_gyr_sigma: 0.000005
   add_bias_noise: True
-  accel_bias_range: 0.1
-  gyro_bias_range: 0.002
+  accel_bias_range: 0.05
+  gyro_bias_range: 0.001
   add_gravity_noise: True
-  gravity_noise_theta_range: 5
+  gravity_noise_theta_range: 2
 
 model:
   model_name: Foundation_Model
