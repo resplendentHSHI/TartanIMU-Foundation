@@ -683,6 +683,7 @@ def main(rank: int, world_size: int, args, resume_path, model_path, cfg):
             exp_name = os.environ.get("WANDB_RUN_NAME", os.path.split(args.yaml)[-1].split(".")[0])
             wandb.init(
                 project="Neural_Inertial_Tracking_" + cfg["data"]["dataset"],
+                entity="tartan-imu",
                 config=cfg["train"],
                 name=exp_name,
             )
@@ -845,6 +846,7 @@ def main(rank: int, world_size: int, args, resume_path, model_path, cfg):
             exp_name = os.environ.get("WANDB_RUN_NAME", os.path.split(args.yaml)[-1].split(".")[0] + "_test")
             wandb.init(
                 project="Neural_Inertial_Tracking_" + cfg["data"]["dataset"],
+                entity="tartan-imu",
                 config=cfg,
                 name=exp_name,
                 job_type="test",

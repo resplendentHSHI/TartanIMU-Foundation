@@ -2481,9 +2481,13 @@ class tester(object):
         # Process each trajectory
         for key in test_data_path_list:
             for data in test_data_path_list[key]:
-                trajectory_results, aggregated_metrics = self.process_single_trajectory(
-                    data, key, epoch_num, resume_model, segment_length
-                )
+                try:
+                    trajectory_results, aggregated_metrics = self.process_single_trajectory(
+                        data, key, epoch_num, resume_model, segment_length
+                    )
+                except Exception as e:
+                    logging.warning(f"Skipping trajectory {data}: {e}")
+                    continue
 
                 all_trajectory_results.append(trajectory_results)
                 segment_metrics_all.extend(trajectory_results["segment_metrics"])
