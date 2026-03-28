@@ -839,6 +839,18 @@ def main(rank: int, world_size: int, args, resume_path, model_path, cfg):
     # Testing mode (separate from training)
     if cfg["schemes"]["test"]:
         logging.info("Starting testing mode")
+
+        # Initialize wandb for test-only mode if not already initialized
+        if wandb.run is None and args.log and rank == 0:
+            exp_name = os.environ.get("WANDB_RUN_NAME", os.path.split(args.yaml)[-1].split(".")[0] + "_test")
+            wandb.init(
+                project="Neural_Inertial_Tracking_" + cfg["data"]["dataset"],
+                config=cfg,
+                name=exp_name,
+                job_type="test",
+            )
+            logging.info(f"Wandb initialized for testing on rank {rank}")
+
         train_category_path, val_category_path, test_category_path = {}, {}, {}
         train_path_list, val_path_list, test_path_list = {}, {}, {}
         test_data_path = []
@@ -888,6 +900,10 @@ def main(rank: int, world_size: int, args, resume_path, model_path, cfg):
         # Run testing
         tester = configer.build_tester(args, cfg, model, resume_path)
         all_metrics = tester.test(test_path_list, 1000, model)
+
+        # Finish wandb run to ensure all test data is synced
+        if wandb.run is not None:
+            wandb.finish()
 
 
 if __name__ == "__main__":

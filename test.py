@@ -8,6 +8,7 @@ from os import path as osp
 
 import numpy as np
 import torch
+import wandb
 from evaluation import postprocess
 from evaluation.metrics import compute_accruacy_metrics, compute_ate_rte
 from model import function
@@ -2438,6 +2439,7 @@ class tester(object):
             "processing_method": "post_inference_with_drift_correction",
             "segment_metrics": segment_metrics,
             "full_trajectory": full_metrics,
+            "output_dir": outdir,
             **aggregated_metrics,
         }
 
@@ -2527,4 +2529,79 @@ class tester(object):
         # Create summary plot of all segments
         create_segments_summary_plot(all_trajectory_results, self.out_dir)
 
+        # Log results to wandb if available
+        self.log_wandb_test_results(all_trajectory_results, overall_stats, segment_metrics_all)
+
         return all_metrics
+
+    def log_wandb_test_results(self, all_trajectory_results, overall_stats, segment_metrics_all):
+        """Log ATE/RTE tables and summary plots to wandb after testing."""
+        if wandb.run is None:
+            return
+
+        # 1. Log overall summary metrics
+        summary = {}
+        for key in ["avg_ate", "avg_t_rte", "avg_d_rte", "avg_ATE", "avg_AVE", "avg_P_RMSE", "avg_V_RMSE"]:
+            if key in overall_stats:
+                summary[f"test/{key}"] = overall_stats[key]
+        if "segment_statistics" in overall_stats:
+            seg_stats = overall_stats["segment_statistics"]
+            summary["test/total_segments"] = seg_stats["total_segments"]
+            summary["test/avg_segment_length"] = seg_stats["avg_segment_length"]
+            summary["test/segment_ate_mean"] = seg_stats["segment_ate_stats"]["mean"]
+            summary["test/segment_ate_std"] = seg_stats["segment_ate_stats"]["std"]
+            summary["test/segment_rmse_mean"] = seg_stats["segment_rmse_stats"]["mean"]
+        wandb.log(summary)
+
+        # 2. Log per-trajectory ATE/RTE table
+        traj_columns = ["trajectory", "data", "segments", "avg_ate", "avg_t_rte", "avg_d_rte", "avg_P_RMSE", "avg_V_RMSE"]
+        traj_data = []
+        for i, traj in enumerate(all_trajectory_results):
+            traj_data.append([
+                f"Traj_{i+1}",
+                traj.get("data", "N/A"),
+                traj.get("num_segments", 0),
+                round(traj.get("avg_ate", 0), 4),
+                round(traj.get("avg_t_rte", 0), 4),
+                round(traj.get("avg_d_rte", 0), 4),
+                round(traj.get("avg_P_RMSE", 0), 4),
+                round(traj.get("avg_V_RMSE", 0), 4),
+            ])
+        wandb.log({"test/trajectory_metrics": wandb.Table(columns=traj_columns, data=traj_data)})
+
+        # 3. Log per-segment ATE/RTE table
+        if segment_metrics_all:
+            seg_columns = ["segment", "trajectory", "segment_length", "ate", "t_rte", "d_rte", "P_RMSE", "V_RMSE"]
+            seg_data = []
+            for i, seg in enumerate(segment_metrics_all):
+                seg_data.append([
+                    i,
+                    seg.get("trajectory", "N/A"),
+                    round(seg.get("segment_length", 0), 2),
+                    round(seg.get("ate", 0), 4),
+                    round(seg.get("t_rte", 0), 4),
+                    round(seg.get("d_rte", 0), 4),
+                    round(seg.get("P_RMSE", 0), 4),
+                    round(seg.get("V_RMSE", 0), 4),
+                ])
+            wandb.log({"test/segment_metrics": wandb.Table(columns=seg_columns, data=seg_data)})
+
+        # 4. Log summary plots as images
+        plot_files = [
+            osp.join(self.out_dir, "segments_summary_plot.png"),
+            osp.join(self.out_dir, "segments_statistics.png"),
+        ]
+        for plot_path in plot_files:
+            if osp.exists(plot_path):
+                wandb.log({f"test/{osp.basename(plot_path)}": wandb.Image(plot_path)})
+
+        # 5. Log per-trajectory 3D plots and segment plots
+        for i, traj in enumerate(all_trajectory_results):
+            traj_dir = traj.get("output_dir", "")
+            if traj_dir and osp.isdir(traj_dir):
+                for fname in os.listdir(traj_dir):
+                    if fname.endswith(".png"):
+                        img_path = osp.join(traj_dir, fname)
+                        wandb.log({f"test/traj_{i+1}/{fname}": wandb.Image(img_path)})
+
+        logging.info("Test results logged to wandb")
